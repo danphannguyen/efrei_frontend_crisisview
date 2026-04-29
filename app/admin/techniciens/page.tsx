@@ -10,7 +10,8 @@ type Technicien = {
   phone: string;
 };
 
-const API = "http://localhost:3001/techniciens";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+const API = `${API_BASE_URL}/techniciens`;
 
 export default function TechniciensAdmin() {
   const [techniciens, setTechniciens] = useState<Technicien[]>([]);

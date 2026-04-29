@@ -7,10 +7,3 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=production
-    networks:
-      - crisiview-network
-
-networks:
-  # On garde 'external' car le réseau est créé par le déploiement du Backend
-  crisiview-network:
-    external: true

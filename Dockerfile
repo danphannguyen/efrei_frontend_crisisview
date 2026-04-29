@@ -7,7 +7,7 @@ RUN npm ci
 COPY . .
 
 # Gestion de l'URL API avec fallback vers localhost si NEXT_PUBLIC_API_URL n'est pas défini
-ARG NEXT_PUBLIC_API_URL=http://localhost:3001/api
+ARG NEXT_PUBLIC_API_URL
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
 
 RUN npm run build

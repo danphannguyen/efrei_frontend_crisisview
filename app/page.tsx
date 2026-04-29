@@ -11,7 +11,7 @@ type Incident = {
   longitude: number;
 };
 
-// Load map only on client (VERY IMPORTANT)
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001/api";
 const Map = dynamic(() => import("./components/Map"), {
   ssr: false,
 });
@@ -20,7 +20,7 @@ export default function Home() {
   const [incidents, setIncidents] = useState<Incident[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/incidents")
+    fetch(`${API_BASE_URL}/incidents`)
       .then((res) => res.json())
       .then(setIncidents);
   }, []);

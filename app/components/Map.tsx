@@ -9,6 +9,8 @@ import {
 } from "react-leaflet";
 import L from "leaflet";
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+
 type Incident = {
   id: number;
   name: string;
@@ -23,15 +25,15 @@ type Intervention = {
 };
 
 // Fix default marker icons (Leaflet bug in Next)
-delete (L.Icon.Default.prototype as any)._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl:
-    "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png",
-  iconUrl:
-    "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
-  shadowUrl:
-    "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png",
-});
+    delete (L.Icon.Default.prototype as any)._getIconUrl;
+    L.Icon.Default.mergeOptions({
+    iconRetinaUrl:
+        "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png",
+    iconUrl:
+        "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
+    shadowUrl:
+        "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png",
+    });
 
 const redIcon = new L.Icon({
   iconUrl:
@@ -67,7 +69,7 @@ export default function Map({
   const [interventions, setInterventions] = useState<Intervention[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/interventions")
+    fetch(`${API_BASE_URL}/interventions`)
       .then((res) => res.json())
       .then(setInterventions);
   }, []);
