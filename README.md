@@ -75,4 +75,3 @@ app/
 
 The frontend connects to the backend via local network requests. The default API URL is configured as:
 `http://localhost:3001`
-# frontend_crisisview
